@@ -15,7 +15,7 @@ You can use environment variables to control the behavior.
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `DEBUG` | | Set to `1` to enable additional debug logging. |
-| `HOMEASSISTANT_PREFIX` | `homeassistant` | The prefix for Home Assistant discovery. Must be the same as `discovery_prefix` in your homeassistant configuration. |
+| `HOMEASSISTANT_PREFIX` | `homeassistant` | The prefix for Home Assistant discovery. Must be the same as `discovery_prefix` in your Home Assistant configuration. |
 | `HOSTLIST` | `localhost:127.0.0.1` | A comma separated list of hosts to ping. This is the valid grammar for each host entry: `<hostname[:ip_address]>` |
 | `MQTT_CLIENT_ID` | `mqtt2discord` | The client id to send to the MQTT broker. |
 | `MQTT_HOST` | `localhost` | The MQTT broker to connect to. |
@@ -26,7 +26,7 @@ You can use environment variables to control the behavior.
 
 # Consuming The Data
 
-Data is published using JSON serialization. It will arrive every ~10 seconds in the following form:
+Data is published to the topic `ping/<hostname>` using JSON serialization. It will arrive every ~10 seconds in the following form:
 
 ```yaml
 {
@@ -39,5 +39,11 @@ Data is published using JSON serialization. It will arrive every ~10 seconds in 
 
 * `alive`: Set to `on` when the host is up, otherwise `off`
 * `last_10_seconds`: An average of the last 10 datapoints we received
-* `last_1_min`: An average of the last 6 `last_10_seconds` packets
-* `last_5_min`: An average of the last 30 `last_10_seconds` packets
+* `last_1_min`: An average of the last 6 `last_10_seconds` averages
+* `last_5_min`: An average of the last 30 `last_10_seconds` averages
+
+# Home Assistant
+
+After you start the service the should show up in Home Assistant pretty immediately. Look for sensors that start with `binary_sensor.ping`. The latency information will be available as attributes, which you can then expose using template sensors if you wish.
+
+![Screenshot of Home Assistant sensor showing status and attributes.](ha_screenshot.png)
