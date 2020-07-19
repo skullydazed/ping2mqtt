@@ -110,7 +110,7 @@ def update_last_mins(host, hostresult):
 
 
 def min_avg_max(dataset):
-    """Takes a sequence of min,avg,max tuples and finds the min,avg,max of the set.
+    """Takes a sequence of min,avg,max dictionaries and finds the min,avg,max of the set.
     """
     result = {
         'min': None, 
@@ -126,7 +126,7 @@ def min_avg_max(dataset):
         if not result['min'] or datapoint['min'] < result['min']:
             result['min'] = datapoint['min']
 
-        if not result['max'] or datapoint['max'] < result['max']:
+        if not result['max'] or datapoint['max'] > result['max']:
             result['max'] = datapoint['max']
 
         avg_sum += datapoint['avg']
