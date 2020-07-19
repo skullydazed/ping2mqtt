@@ -44,6 +44,6 @@ Data is published to the topic `ping/<hostname>` using JSON serialization. It wi
 
 # Home Assistant
 
-After you start the service the should show up in Home Assistant pretty immediately. Look for sensors that start with `binary_sensor.ping`. The latency information will be available as attributes, which you can then expose using template sensors if you wish.
+After you start the service binary sensors should show up in Home Assistant pretty immediately. Look for sensors that start with `binary_sensor.ping`. The latency information will be available as attributes, which you can then expose using template sensors if you wish. Be aware that the attributes are updated every 10 seconds, you will quickly fill your history db if you do not exclude your template sensors.
 
 ![Screenshot of Home Assistant sensor showing status and attributes.](ha_screenshot.png)
