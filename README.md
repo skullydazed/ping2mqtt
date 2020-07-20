@@ -8,6 +8,25 @@ Use docker to launch this. A typical invocation is:
 
     docker run --network mqtt -e MQTT_HOST=mosquitto -e HOSTLIST=localhost:127.0.0.1,router.local:192.168.1.1,internet.gw:10.10.10.1 skullydazed/ping2mqtt
 
+You can also use docker compose:
+```yaml
+version: '3'
+services:
+  ping2mqtt:
+    container_name: ping2mqtt
+    image: skullydazed/ping2mqtt
+    environment:
+    - HOMEASSISTANT_PREFIX=homeassistant
+    - HOSTLIST=router.local:192.168.1.1,internet.gw:10.10.10.1
+    - MQTT_CLIENT_ID=ping2mqtt
+    - MQTT_HOST=mosquitto
+    - MQTT_PORT=1883
+    - MQTT_TIMEOUT=300
+    - MQTT_TOPIC_PREFIX=ping
+    - MQTT_QOS=1
+    restart: always
+```
+
 # Configuration
 
 You can use environment variables to control the behavior.
