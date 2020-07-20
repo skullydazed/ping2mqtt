@@ -9,14 +9,13 @@ from socket import gethostbyname
 from time import strftime
 from traceback import print_exc
 
-import paho.mqtt.publish
 import paho.mqtt.client
 from icmplib import multiping
 
 DEBUG = environ.get('DEBUG') == '1'
 HOMEASSISTANT_PREFIX = environ.get('HOMEASSISTANT_PREFIX', 'homeassistant')
 HOSTLIST = environ.get('HOSTLIST', 'localhost:127.0.0.1')
-MQTT_CLIENT_ID = environ.get('MQTT_CLIENT_ID', 'mqtt2discord')
+MQTT_CLIENT_ID = environ.get('MQTT_CLIENT_ID', 'ping2mqtt')
 MQTT_HOST = environ.get('MQTT_HOST', 'localhost')
 MQTT_PORT = int(environ.get('MQTT_PORT', '1883'))
 MQTT_TIMEOUT = int(environ.get('MQTT_TIMEOUT', '300'))
