@@ -19,6 +19,8 @@ services:
     - HOMEASSISTANT_PREFIX=homeassistant
     - HOSTLIST=router.local:192.168.1.1,internet.gw:10.10.10.1
     - MQTT_CLIENT_ID=ping2mqtt
+    - MQTT_USER=username
+    - MQTT_PASSWD=password
     - MQTT_HOST=mosquitto
     - MQTT_PORT=1883
     - MQTT_TIMEOUT=300
@@ -37,6 +39,8 @@ You can use environment variables to control the behavior.
 | `HOMEASSISTANT_PREFIX` | `homeassistant` | The prefix for Home Assistant discovery. Must be the same as `discovery_prefix` in your Home Assistant configuration. |
 | `HOSTLIST` | `localhost:127.0.0.1` | A comma separated list of hosts to ping. This is the valid grammar for each host entry: `<hostname[:ip_address]>` |
 | `MQTT_CLIENT_ID` | `mqtt2discord` | The client id to send to the MQTT broker. |
+| `MQTT_USER` | `` | The user to send to the MQTT broker. |
+| `MQTT_PASSWD` | `` | The password to send to the MQTT broker. |
 | `MQTT_HOST` | `localhost` | The MQTT broker to connect to. |
 | `MQTT_PORT` | `1883` | The port on the broker to connect to. |
 | `MQTT_TIMEOUT` | `300` | The timeout for the MQTT connection. |

@@ -16,6 +16,8 @@ DEBUG = environ.get('DEBUG') == '1'
 HOMEASSISTANT_PREFIX = environ.get('HOMEASSISTANT_PREFIX', 'homeassistant')
 HOSTLIST = environ.get('HOSTLIST', 'localhost:127.0.0.1')
 MQTT_CLIENT_ID = environ.get('MQTT_CLIENT_ID', 'ping2mqtt')
+MQTT_USER = environ.get('MQTT_USER', '')
+MQTT_PASSWD = environ.get('MQTT_PASSWD', '')
 MQTT_HOST = environ.get('MQTT_HOST', 'localhost')
 MQTT_PORT = int(environ.get('MQTT_PORT', '1883'))
 MQTT_TIMEOUT = int(environ.get('MQTT_TIMEOUT', '300'))
@@ -47,6 +49,7 @@ for host in HOSTLIST.split(','):
 
 
 mqtt = paho.mqtt.client.Client()
+mqtt.username_pw_set(username=MQTT_USER,password=MQTT_PASSWD)
 mqtt.will_set("ping/status", "offline", qos=MQTT_QOS, retain=True)
 mqtt.connect(MQTT_HOST, MQTT_PORT, MQTT_TIMEOUT)
 mqtt.publish('ping/status', 'online', qos=MQTT_QOS, retain=True)
