@@ -51,7 +51,7 @@ You can use environment variables to control the behavior.
 
 Data is published to the topic `ping/<hostname>` using JSON serialization. It will arrive every ~10 seconds in the following form:
 
-```yaml
+```json
 {
     "alive": "on",
     "last_10_sec": {"min": 8.175, "avg": 32.592, "max": 136.915, "percent_dropped": 0.0},
