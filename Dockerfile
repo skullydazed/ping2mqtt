@@ -1,15 +1,10 @@
-FROM debian:stable
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+FROM python:3-slim-bullseye
 
-# Pre-reqs
-RUN apt update && \
-    apt install --no-install-recommends -y python3-paho-mqtt python3-pip python3-setuptools && \
-    rm -rf /var/lib/apt/lists/*
-RUN pip3 install icmplib
+WORKDIR /usr/src/app
 
-# Copy files into place
-COPY ping2mqtt /
+COPY requirements.txt /usr/src/app
+COPY ping2mqtt /usr/src/app
 
-# Set the entrypoint
-ENTRYPOINT ["/ping2mqtt"]
+RUN pip3 install -r requirements.txt
+
+ENTRYPOINT ["python3", "ping2mqtt"]
